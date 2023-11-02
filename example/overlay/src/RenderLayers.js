@@ -22,14 +22,13 @@ const urls = [
 ]
 
 
-export function renderLayers({ data, visible }) {
+export function renderLayers({ visible }) {
   let layers = []
 
-  if(!data) return null;
  
   const geoJsonLayer = new GeoJsonLayer({
     id: 'geojson-layer',
-    data: data,
+    data: "./data/area.geojson",
     pickable: false,
     stroked: false,
     filled: true,
@@ -45,7 +44,7 @@ export function renderLayers({ data, visible }) {
 
   const overLayer = new GeoJsonLayer({
     id: 'over-layer',
-    data: data,
+    data: "./data/area.geojson",
     pickable: false,
     stroked: false,
     filled: true,
@@ -65,7 +64,6 @@ export function renderLayers({ data, visible }) {
   urls.forEach((url,i)=>{
     const tile3Dlayer = new Tile3DLayer({
       id: 'tile-3d-layer' + i,
-      // Tileset entry point: Indexed 3D layer file url
       data: url,
       onTileLoad: (tileHeader) => {
         tileHeader.content.cartographicOrigin = new Vector3(
@@ -73,13 +71,6 @@ export function renderLayers({ data, visible }) {
           tileHeader.content.cartographicOrigin.y,
           tileHeader.content.cartographicOrigin.z - 40,
         );
-      },
-      _subLayerProps: {
-        scenegraph: {
-          _lighting: 'pbr',
-          getTranslation: [-0, 0, 0],
-          getColor:[200, 200, 200]
-        }
       },
       operation: 'terrain+draw'
     });

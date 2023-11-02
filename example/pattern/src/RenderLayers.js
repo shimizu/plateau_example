@@ -2,8 +2,11 @@ import { Tile3DLayer, GeoJsonLayer } from 'deck.gl';
 import { _TerrainExtension as TerrainExtension, FillStyleExtension } from '@deck.gl/extensions';
 import { Vector3 } from 'math.gl';
 
+//pattern.jsonのkey
 const patterns = ['t1', 't2', 't3', 't4'];
 
+
+//PLATEAU 3D tile置き場。自分でホスティングしているものに変更してください。
 const urls = [
   "https://storage.googleapis.com/g3-open-resource/PLATEAU/tokyo/13101_chiyoda-ku_notexture_2/13101_chiyoda-ku_notexture/tileset.json",
   "https://storage.googleapis.com/g3-open-resource/PLATEAU/tokyo/13102_chuo-ku_notexture_2/13102_chuo-ku_notexture/tileset.json",
@@ -34,7 +37,7 @@ export function renderLayers({ visible }) {
     getFillPatternScale: 0.1,
     getFillPatternOffset: [0, 0],
 
-    // エクステンションの指定
+    //pattern.jsonで指定したテクスチャを地面のGeoJSONLayerに適応する
     extensions: [new FillStyleExtension({ pattern: true })]
   });
 
@@ -53,23 +56,22 @@ export function renderLayers({ visible }) {
 
     // FillStyleExtensionの設定
     fillPatternMask: false,
-    fillPatternAtlas: './img/tile.png',
-    fillPatternMapping: './data/tile.json',
+    fillPatternAtlas: './img/pattern.png',
+    fillPatternMapping: './data/pattern.json',
     getFillPattern: (f, { index }) => {
       return patterns[index % 4]
     },
     getFillPatternScale: 0.1,
     getFillPatternOffset: [0, 0],
 
-    // エクステンションの指定
+    // テクスチャを3Dモデルのサーフェイスに適用する
     extensions: [new FillStyleExtension({ pattern: true }), new TerrainExtension()]
   });
 
   if (visible) layers.push(overLayer);
 
 
-
-  //
+  //PLATEAU 3D tileを表示ｓ
   urls.forEach((url,i)=>{
     const tile3Dlayer = new Tile3DLayer({
       id: 'tile-3d-layer' + i,
@@ -81,13 +83,6 @@ export function renderLayers({ visible }) {
           tileHeader.content.cartographicOrigin.y,
           tileHeader.content.cartographicOrigin.z - 40,
         );
-      },
-      _subLayerProps: {
-        scenegraph: {
-          _lighting: 'pbr',
-          getTranslation: [-0, 0, 0],
-          getColor:[200, 200, 200]
-        }
       },
       operation: 'terrain+draw'
     });

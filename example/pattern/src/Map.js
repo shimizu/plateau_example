@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import DeckGL  from 'deck.gl';
-import { LineLayer } from '@deck.gl/layers';
+import React, { useState } from 'react';
 import { MapboxOverlay } from '@deck.gl/mapbox';
 
 import ReactMapGL, { useControl } from 'react-map-gl';
@@ -11,13 +9,7 @@ import {
     _SunLight as SunLight
 } from "@deck.gl/core";
 
-
-import { _GeoJSONLoader as GeoJSONLoader } from "@loaders.gl/json";
-import zipLoader from './Util/zipLoader'
-
-
 import { renderLayers } from "./RenderLayers";
-
 
 
 const ambientLight = new AmbientLight({
@@ -38,22 +30,19 @@ const INITIAL_VIEW_STATE = {
     latitude: 35.653933837879194,
     zoom: 17,
     pitch: 75.88225812885756,
-//    zoom: 17,
-//    pitch: 0,
     bearing: 10.702702702702704,
 };
 
-
+//ベースマップに使っているmapboxのトークン
 const MAPBOX_ACCESS_TOKEN = "pk.eyJ1Ijoic2hpbWl6dSIsImEiOiJjbGZwbDg3YnUwYWV2M3FubDdvN3pqcDhxIn0.WfKF0oFWPFqS6xn0Mm0Yow"
 
 function Map() {
-    const [visible,setVisible] = useState(false)
+    const [visible,setVisible] = useState(true)
 
 
     const DeckGLOverlay = (props) => {
         const overlay = useControl(() => new MapboxOverlay(props));
         overlay.setProps(props);
-        console.log(props)
         return null;
     };
 
@@ -84,7 +73,7 @@ function Map() {
             </ReactMapGL >
             <fieldset>
                 <legend>Controller</legend>
-                <label><input type="checkbox" value={visible} onClick={handlerCheckBox}></input>OverLaey</label>
+                <label><input type="checkbox" defaultChecked={visible} onClick={handlerCheckBox}></input>OverLaey</label>
             </fieldset>
 
 
