@@ -1,0 +1,30 @@
+{
+    "t1": {
+        "x": 0,
+        "y": 0,
+        "width": 462,
+        "height": 306,
+        "mask": false
+    },
+    "t2": {
+        "x": 462,
+        "y": 0,
+        "width": 462,
+        "height": 306,
+        "mask": false
+    },
+    "t3": {
+        "x": 0,
+        "y": 306,
+        "width": 462,
+        "height": 306,
+        "mask": false
+    },
+    "t4": {
+        "x": 462,
+        "y": 306,
+        "width": 462,
+        "height": 306,
+        "mask": false
+    }
+}

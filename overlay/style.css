@@ -1,0 +1,3 @@
+html,body{margin:0px;padding:0px;background-color:#7e7edf}.App{width:100%;height:100%}#copyright{position:absolute;bottom:0;right:0;background-color:#000;line-height:12px;padding:4px;z-index:9;font-family:Roboto;font-style:normal;font-size:.8em;letter-spacing:.0575em;color:#fff}#logo{position:absolute;bottom:16px;left:16px;height:24px;display:inline-block}#ui{display:none;position:absolute;top:8px;left:8px;z-index:9;background-color:#fff;padding:4px}fieldset{position:absolute;top:0px;left:0px;max-width:200px;color:#ccc;background-color:#000;font-family:"Mohave",sans-serif;font-kerning:none;z-index:999}
+
+/*# sourceMappingURL=style.css.map*/
