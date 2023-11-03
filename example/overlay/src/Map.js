@@ -36,7 +36,9 @@ const INITIAL_VIEW_STATE = {
 };
 
 
-const MAPBOX_ACCESS_TOKEN = "pk.eyJ1Ijoic2hpbWl6dSIsImEiOiJjbGZwbDg3YnUwYWV2M3FubDdvN3pqcDhxIn0.WfKF0oFWPFqS6xn0Mm0Yow"
+//ベースマップにMapboxを使っています。
+//mapboxのトークンを設定してください。
+const MAPBOX_ACCESS_TOKEN = ""
 
 function Map() {
     const [visible,setVisible] = useState(true)
